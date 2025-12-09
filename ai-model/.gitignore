@@ -2,3 +2,6 @@
 .venv
 .env
 dataset
+__pycache__/
+training/runs/
+training/__pycache__

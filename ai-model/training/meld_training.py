@@ -120,6 +120,7 @@ class MELDDataset(Dataset):
             
             # load audio using librosa (more reliable than torchaudio.load on Windows)
             waveform, sample_rate = librosa.load(audio_path, sr=16000, mono=True)
+            
             waveform = torch.FloatTensor(waveform).unsqueeze(0)  # Add channel dimension
             
             # extract mel spectrogram features

@@ -166,4 +166,33 @@ the output will be emotion classifier (7 classes) and sentiment classifier (3 cl
 
 ## A sequential container.
 what is nn.Sequential in PyTorch?
-`nn.Sequential` is a container module in PyTorch that allows you to create a neural network by stacking layers sequentially. It simplifies the process of building models by allowing you to define a sequence of layers in a single line of code. Each layer is added in the order it is defined, and the input is passed through each layer one after the other.
+`nn.Sequential` is a container module in PyTorch that allows you to create a neural network by stacking layers sequentially. It simplifies the process of building models by allowing you to define a sequence of layers in a single line of code. Each layer is added in the order it is defined, and the input is passed through each layer one after the other.'
+
+## gradient clipping:
+* gradient clipping is a technique used to prevent exploding gradients during training of deep neural networks. It involves setting a threshold value for the gradients, and if the computed gradients exceed this threshold, they are scaled down to keep them within the limit. This helps stabilize the training process and ensures that the model converges more effectively.
+* scenarios where gradient clipping is particularly useful include:
+  - Training very deep networks where gradients can grow exponentially.
+  - Recurrent neural networks (RNNs) where long sequences can lead to unstable gradients.
+  - Situations where the loss landscape has steep regions that can cause large updates to model parameters.
+
+## count_parameters(model):
+* why do we need count parameters?
+  - Counting the number of parameters in a model is important for several reasons:
+    - Model Complexity: It gives an indication of the model's complexity. More parameters generally mean a more complex model that can potentially capture more intricate patterns in the data.
+    - Overfitting Risk: A model with too many parameters relative to the amount of training data may overfit, meaning it performs well on training data but poorly on unseen data.
+    - Computational Resources: The number of parameters affects the computational resources required for training and inference, including memory usage and processing time.
+    - Comparison: It allows for comparison between different models or architectures to understand their relative sizes and complexities.
+  ```bash
+  Trainable parameters in each component:
+text_encoder        : 98,432 parameters
+video_encoder       : 65,664 parameters
+audio_encoder       : 16,512 parameters
+fusion_layer        : 99,072 parameters
+emotion_classifier  : 16,903 parameters
+sentiment_classifier: 16,643 parameters
+  ```
+
+  => this shows the number of trainable parameters in each component of the multimodal sentiment analysis model.
+  * trainable vs untrainable parameters:
+    - Trainable parameters are those that are updated during the training process through backpropagation. These parameters are adjusted based on the loss function to minimize errors and improve model performance. Examples include weights and biases in layers like fully connected layers, convolutional layers, etc.
+    - Untrainable parameters, on the other hand, are not updated during training. These could be fixed parameters or hyperparameters that remain constant throughout the training process. Examples include certain normalization parameters or pre-trained embeddings that are kept static.
