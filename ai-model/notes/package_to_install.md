@@ -156,3 +156,14 @@ text encodeer: bert base uncased
 => all these 3 modal features will be concatnated [batch_size, 128 * 3] => fusion layer to learn relationship between these modal features => relu for non linearity => dropout for regularization => emotion classifier and sentiment classifier to get final prediction
 
 the output will be emotion classifier (7 classes) and sentiment classifier (3 classes)
+
+### optimizer: adam optimizer with learning rate 1e-4
+* we use adam optimizer because it combines the advantages of both AdaGrad and RMSProp, making it well-suited for a wide range of deep learning tasks. Adam adapts the learning rate for each parameter individually based on the first and second moments of the gradients, which helps in faster convergence and better performance, especially in scenarios with sparse gradients or noisy data.
+### loss function: cross entropy loss for both emotion and sentiment classification
+* loss function is used to measure the difference between the predicted output and the true labels during training. Cross-entropy loss is particularly suitable for multi-class classification tasks, such as emotion and sentiment classification, because it quantifies the dissimilarity between the predicted probability distribution (output of the model) and the actual distribution (true labels). By minimizing this loss, the model learns to make more accurate predictions.
+### learning rate scheduler: reduceLROnPlateau to reduce learning rate when validation loss plateaus
+* recuse learnign rate if it does not importe for certain epochs. gradient descent will get stuck in local minima if learning rate is too high. so reducing learning rate will help the model to converge better
+
+## A sequential container.
+what is nn.Sequential in PyTorch?
+`nn.Sequential` is a container module in PyTorch that allows you to create a neural network by stacking layers sequentially. It simplifies the process of building models by allowing you to define a sequence of layers in a single line of code. Each layer is added in the order it is defined, and the input is passed through each layer one after the other.
